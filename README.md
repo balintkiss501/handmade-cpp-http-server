@@ -4,6 +4,7 @@ That's a bit of an overstatement, this is my simple HTTP server exercise I made 
 
 For the Windows executable (currently 32-bit), I cross-compiled it under Linux. If you want my approach, here's what you would do:
 
+```bash
 $ sudo aptitude install mingw-w64
 $ wget -c 'http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.bz2/download' -o boost_1_60_0.tar.bz2
 $ tar -xvf boost_1_60_0.tar.bz2
@@ -27,7 +28,7 @@ $ sudo cp -r boost /usr/i686-w64-mingw3/include/boost
 $ sudo cp stage/lib/libboost_system-mt.a /usr/i686-w64-mingw32/lib/libboost_system.a
 $ sudo cp stage/lib/libboost_thread_win32-mt.a /usr/i686-w64-mingw32/lib/libboost_thread.a
 $ sudo cp stage/lib/libboost_chrono-mt.a /usr/i686-w64-mingw32/lib/libboost_chrono.a
-
+```
 
 TODO:
 - Convert Makefile-based build approach to autotools (CMake would be overkill for this)
