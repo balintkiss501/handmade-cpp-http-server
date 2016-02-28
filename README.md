@@ -1,6 +1,9 @@
 Who needs WAMP/LAMP stack anyway, when you can roll your own?
 
-That's a bit of an overstatement, this is my simple HTTP server exercise I made in C++ with Boost Asio library, to accept HTTP requests and display content from the public_html folder. This is still in progress. After launch, you can test it in browser or via cURL.
+That's a bit of an overstatement, this is my simple HTTP server exercise I made in C++ with Boost Asio library, to accept HTTP requests and display content from the public_html folder. This is still in progress. After launching "server" or "server.exe", you can test it in browser or via cURL.
+
+[Download Linux 64-bit](https://github.com/balintkiss501/handmade-cpp-http-server/releases/download/linux64_v1.0.0/handmade-cpp-http-server_linux64_v1.0.0.tar.gz)
+[Download Windows 32-bit](https://github.com/balintkiss501/handmade-cpp-http-server/releases/download/win32_v1.0.0/handmade-cpp-http-server_win32_v1.0.0.zip)
 
 For the Windows executable (currently 32-bit), I cross-compiled it under Linux. If you want my approach, here's what you would do:
 
@@ -29,9 +32,3 @@ $ sudo cp stage/lib/libboost_system-mt.a /usr/i686-w64-mingw32/lib/libboost_syst
 $ sudo cp stage/lib/libboost_thread_win32-mt.a /usr/i686-w64-mingw32/lib/libboost_thread.a
 $ sudo cp stage/lib/libboost_chrono-mt.a /usr/i686-w64-mingw32/lib/libboost_chrono.a
 ```
-
-TODO:
-- Convert Makefile-based build approach to autotools (CMake would be overkill for this)
-- Make it modular
-- Implement the 404 HTTP response
-- Handle URL endpoints, like "http://localhost:8080/here-is-something"
