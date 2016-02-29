@@ -4,7 +4,7 @@ MINGW32_CXX		= i686-w64-mingw32-g++
 CFLAGS			= -std=c++11 -static-libgcc -static-libstdc++ -static
 LINK			= -lboost_system -lboost_thread
 
-SRC				= src/server.cpp
+SRC				= src/*.cpp
 TARGET			= server
 
 
