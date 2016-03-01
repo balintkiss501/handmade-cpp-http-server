@@ -15,13 +15,9 @@ std::string HttpServer::parse_request(tcp::socket &socket)
     std::regex url_path_regex("(\\/([^\\s]+)|\\/)");
     std::smatch url_path_match;
 
-    // TODO: Use something else instead of char[] buffer
-    //boost::asio::streambuf request_buffer;
-    //boost::asio::read(socket, request_buffer.prepare(1), error_code);
-
-    char request_buffer[1024];
+    std::vector<char> request_buffer(1024);
     socket.receive(boost::asio::buffer(request_buffer), {}, error_code);
-    std::string request_str(request_buffer);
+    std::string request_str(request_buffer.data());
     std::regex_search(request_str, url_path_match, url_path_regex);
 
     return url_path_match[0];
@@ -30,22 +26,26 @@ std::string HttpServer::parse_request(tcp::socket &socket)
 /**
  * Read HTML file from ./public_html/
  */
-std::string HttpServer::html_body(std::string filename, int &status_code)
+std::string HttpServer::response_body(std::string filename, int &status_code)
 {
-    if ("/" == filename)
+    // TODO: This is a quick fix
+    if ("/." != filename || "/.." != filename)
     {
-        filename = "/index.html";
-    }
-    
-    std::string filepath = "public_html" + filename;
-    std::ifstream ifs(filepath.c_str());
-    if (ifs)
-    {
-        std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
-        ifs.close();
+        if ("/" == filename)
+        {
+            filename = "/index.html";
+        }
+        
+        std::string filepath = "public_html" + filename;
+        std::ifstream ifs(filepath.c_str());
+        if (ifs)
+        {
+            std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+            ifs.close();
 
-        status_code = HTTP_OK;
-        return content;
+            status_code = HTTP_OK;
+            return content;
+        }
     }
 
     status_code = HTTP_NOT_FOUND;
@@ -59,7 +59,7 @@ std::string HttpServer::build_response(std::string urlpath)
 {
     int status_code;
 
-    std::string msg = html_body(urlpath, status_code);
+    std::string msg = response_body(urlpath, status_code);
     std::string message = "HTTP/1.0 ";
     message += std::to_string(status_code);
 

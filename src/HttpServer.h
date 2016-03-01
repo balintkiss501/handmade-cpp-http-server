@@ -20,7 +20,7 @@ class HttpServer
 
         std::string parse_request(tcp::socket &socket);
         std::string build_response(std::string urlpath);
-        std::string html_body(std::string filename, int &status_code);
+        std::string response_body(std::string filename, int &status_code);
 
     public:
         HttpServer(int port);
