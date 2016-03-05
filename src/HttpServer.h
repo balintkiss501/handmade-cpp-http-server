@@ -18,7 +18,7 @@ class HttpServer
     private:
         int port;
 
-        std::string parse_request(tcp::socket &socket);
+        std::string parse_request(tcp::socket &socket, boost::system::error_code &error_code);
         std::string build_response(std::string urlpath);
         std::string response_body(std::string filename, int &status_code);
 
