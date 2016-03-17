@@ -38,6 +38,7 @@ std::string HttpServer::response_body(std::string filename, int &status_code)
         std::ifstream ifs(filepath.c_str());
         if (ifs)
         {
+            // TODO: Use base64 encoding for images
             std::string content((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
             ifs.close();
 

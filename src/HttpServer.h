@@ -15,16 +15,19 @@ using boost::asio::ip::tcp;
 
 class HttpServer
 {
-    private:
-        int port;
+private:
+    int port;
 
-        std::string parse_request(tcp::socket &socket, boost::system::error_code &error_code);
-        std::string build_response(std::string urlpath);
-        std::string response_body(std::string filename, int &status_code);
+    std::string parse_request(tcp::socket &socket, boost::system::error_code &error_code);
+    std::string build_response(std::string urlpath);
+    std::string response_body(std::string filename, int &status_code);
 
-    public:
-        HttpServer(int port);
-        void listen();
+public:
+    HttpServer(int port);
+    void listen();
+    // void accept_connection();
+    // void receive_request();
+    // void send_response();
 };
 
 #endif

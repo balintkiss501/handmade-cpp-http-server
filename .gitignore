@@ -1,1 +1,8 @@
 dist/
+server
+server.exe
+*.config
+*.creator
+*.creator.user
+*.files
+*.includes
