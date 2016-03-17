@@ -1,4 +1,0 @@
-src/HttpServer.cpp
-src/HttpServer.h
-src/Main.cpp
-Makefile

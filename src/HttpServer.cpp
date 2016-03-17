@@ -8,8 +8,10 @@ HttpServer::HttpServer(int port)
 /**
  * Parse filepath URL from incoming HTTP request
  */
-std::string HttpServer::parse_request(tcp::socket &socket, boost::system::error_code &error_code)
+std::string HttpServer::parse_request(tcp::socket &socket)
 {
+    boost::system::error_code error_code;
+
     std::regex url_path_regex("(\\/([^\\s]+)|\\/)");
     std::smatch url_path_match;
 
@@ -113,7 +115,7 @@ void HttpServer::listen()
             acceptor.accept(socket);
 
             // Send HTTP response
-            std::string filepath = parse_request(socket, error_code);
+            std::string filepath = parse_request(socket);
             boost::asio::write(socket, boost::asio::buffer(build_response(filepath)), error_code);
         }
     }
