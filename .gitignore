@@ -1,8 +1,8 @@
 dist/
-server
-server.exe
+!bin/public_html
 *.config
 *.creator
 *.creator.user
 *.files
 *.includes
+CMakeBuild/

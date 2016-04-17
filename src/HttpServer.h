@@ -1,9 +1,10 @@
-#ifndef HTTP_SERVER_H
-#define HTTP_SERVER_H
+#ifndef HTTP_SERVER_H_
+#define HTTP_SERVER_H_
 
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <memory>
 #include <regex>
 #include <boost/asio.hpp>
 
@@ -11,23 +12,31 @@
 const int HTTP_OK = 200;
 const int HTTP_NOT_FOUND = 404;
 
+
 using boost::asio::ip::tcp;
 
+/**
+ * TODO
+ * - Make it multithreaded
+ */
 class HttpServer
 {
-private:
-    int port;
+    private:
+        int port;
+        std::vector<std::unique_ptr<tcp::socket>> clients;
+        std::vector<std::string> requests;
 
-    std::string parse_request(tcp::socket &socket, boost::system::error_code &error_code);
-    std::string build_response(std::string urlpath);
-    std::string response_body(std::string filename, int &status_code);
+        void acceptConnection(boost::asio::io_service& io_service, tcp::acceptor& acceptor);
+        void receiveRequest();
+        void sendResponse();
 
-public:
-    HttpServer(int port);
-    void listen();
-    // void accept_connection();
-    // void receive_request();
-    // void send_response();
+        std::string parseRequest(const std::string request);
+        std::string buildResponse(std::string urlpath);
+        std::string responseBody(std::string& filename, int& status_code);
+
+    public:
+        HttpServer(const int port) : port(port) {};
+        void listen();
 };
 
-#endif
+#endif  // HTTP_SERVER_H_

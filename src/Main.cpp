@@ -9,14 +9,14 @@ const int UNALLOWED_PORT_BOUND = 1024;
  */
 int main(int argc, char *argv[])
 {    
-    // You can specify port numbers to use on the command line, although I haven't finished it yet.
+    // TODO: Command line arguments
     int port = DEFAULT_PORT;
     if (argc == 2)
     {
         int tmp_port = (int)(argv[1][0] - '0');
 
         if (tmp_port <= UNALLOWED_PORT_BOUND) {
-            std::cerr << "Invalid port number! Must be over " << std::to_string(UNALLOWED_PORT_BOUND) << std::endl;
+            std::cerr << "Invalid port number! Must be over " << std::to_string(UNALLOWED_PORT_BOUND) << '\n';
             return EXIT_FAILURE;
         }
     }
