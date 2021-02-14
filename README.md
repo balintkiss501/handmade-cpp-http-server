@@ -1,6 +1,8 @@
+**This is just an old sample practice project from when I was transitioning from Java to C++**
+
 Who needs WAMP/LAMP stack anyway, when you can roll your own?
 
-That's a bit of an overstatement, this is my simple HTTP server project I made in C++ with Boost Asio library, to accept HTTP requests and display content from the public_html folder. This is still in progress. After launching "server" or "server.exe", you can test it in browser or via cURL.
+That's a bit of an overstatement, this is my simple HTTP server project I made in C++ with Boost Asio library, to accept HTTP requests and display content from the public_html folder. After launching "server" or "server.exe", you can test it in browser or via cURL.
 
 [Download Linux 64-bit](https://github.com/balintkiss501/handmade-cpp-http-server/releases/download/linux64_v1.0.0/handmade-cpp-http-server_linux64_v1.1.0.tar.gz)
 
